@@ -11,3 +11,12 @@ Game::~Game(){
 void Game::Draw(){
     player.Draw();
 }
+
+void Game::HandleInput(){
+    player.Move();
+    player.Rotate();
+}
+
+void Game::Update(){
+    HandleInput();
+}

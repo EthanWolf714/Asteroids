@@ -1,10 +1,15 @@
 #include "player.h"
 
+
+
 Player::Player()
 {
     image = LoadTexture("build/SPRITES/PLAYER.png");
     position.x = (GetScreenWidth() - image.width)/ 2;
     position.y = (GetScreenHeight() - image.height) / 2;
+    scale = 2.0;
+
+    
 
 }
 
@@ -14,5 +19,51 @@ Player::~Player(){
 }
 
 void Player::Draw(){
-    DrawTextureV(image, position, WHITE);
+    
+    Rectangle source = {0,0, (float)image.width, (float)image.height};
+    Rectangle dest = {position.x, position.y, image.width * scale, image.height * scale};
+    Vector2 origin = {(image.width * scale) / 2, (image.height * scale)/2};
+
+    DrawTexturePro(image, source, dest, origin, rotation, WHITE);
+}
+
+void Player::Rotate(){
+
+    //Player logic: rotation
+    if(IsKeyDown(KEY_A)){
+        rotation -= 5; 
+    }
+    if(IsKeyDown(KEY_D)){
+        rotation += 5;
+    }
+}
+
+void Player::Move(){
+    
+    speed.x = sin(rotation*DEG2RAD)*6.0f;
+    speed.y = cos(rotation*DEG2RAD)*6.0f;
+
+    //player logic: accelertaion
+    if(IsKeyDown(KEY_W)){
+        if(acceleration < 1){
+            acceleration += 0.04f;
+        }else{
+            if(acceleration > 0){
+                acceleration -=0.03f;
+            }else if(acceleration < 0){
+                acceleration = 0;
+            }
+        }
+    }
+
+    if(IsKeyDown(KEY_S)){
+        if(acceleration > 0){
+            acceleration -= 0.04;
+        } else if(acceleration < 0) {
+            acceleration = 0;
+        }
+    }
+
+    position.x += speed.x * acceleration;
+    position.y -= speed.y * acceleration;
 }

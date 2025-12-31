@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "raylib.h"
+#include "math.h"
 
 class Player{
     public:
@@ -15,7 +16,8 @@ class Player{
     Vector2 position;
     Vector2 speed;
     float acceleration;
-    float roatation;
+    float rotation;
+    float scale;
 };
 
 
