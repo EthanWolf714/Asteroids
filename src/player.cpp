@@ -4,10 +4,13 @@
 
 Player::Player()
 {
+
     image = LoadTexture("build/SPRITES/PLAYER.png");
     position.x = (GetScreenWidth() - image.width)/ 2;
     position.y = (GetScreenHeight() - image.height) / 2;
     scale = 2.0;
+    rotation = -90.0f;
+    
 
     
 
@@ -20,9 +23,9 @@ Player::~Player(){
 
 void Player::Draw(){
     
-    Rectangle source = {0,0, (float)image.width, (float)image.height};
-    Rectangle dest = {position.x, position.y, image.width * scale, image.height * scale};
-    Vector2 origin = {(image.width * scale) / 2, (image.height * scale)/2};
+    Rectangle source = {0,0, (float)image.width, (float)image.height}; //set source image
+    Rectangle dest = {position.x, position.y, image.width * scale, image.height * scale}; //scale
+    Vector2 origin = {(image.width * scale) / 2, (image.height * scale)/2}; //rotate around center
 
     DrawTexturePro(image, source, dest, origin, rotation, WHITE);
 }
@@ -39,7 +42,7 @@ void Player::Rotate(){
 }
 
 void Player::Move(){
-    
+    //calculate speed
     speed.x = sin(rotation*DEG2RAD)*6.0f;
     speed.y = cos(rotation*DEG2RAD)*6.0f;
 
@@ -64,6 +67,7 @@ void Player::Move(){
         }
     }
 
+    //update position
     position.x += speed.x * acceleration;
     position.y -= speed.y * acceleration;
 }
