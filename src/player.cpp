@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-    image = LoadTexture("Sprites/PLAYER.png");
+    image = LoadTexture("build/SPRITES/PLAYER.png");
     position.x = (GetScreenWidth() - image.width)/ 2;
     position.y = (GetScreenHeight() - image.height) / 2;
 

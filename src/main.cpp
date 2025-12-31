@@ -1,5 +1,5 @@
 #include "raylib.h"
-
+#include "game.h"
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -10,11 +10,12 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Asteroids!");
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
+    Game game;
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -27,9 +28,9 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(BLACK);
-
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        ClearBackground(BLACK);
+        game.Draw();
+           
 
         EndDrawing();
         //----------------------------------------------------------------------------------
