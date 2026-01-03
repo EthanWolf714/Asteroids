@@ -13,12 +13,15 @@ public:
     void Draw();
     void Update();
     void HandleInput();
+    Vector2 GetRandomEdgePosition();
+    Vector2 GetRandomVelocity();
 
 private:
     Player player;
-    Asteroid asteroid;
     std::vector<Bullet> bullets;
     Texture2D bulletTexture;
+    std::vector<Asteroid> asteroids;
+    Texture2D asteroidTexture;
 };
 
 #endif

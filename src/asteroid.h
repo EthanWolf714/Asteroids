@@ -5,15 +5,21 @@
 
 class Asteroid {
     public:
-        Asteroid();
+        Asteroid(Vector2 startPos, Vector2 startSpeed, int asteroidSize, Texture2D* asteroidTexture);
         ~Asteroid();
         void Draw();
         void Update();
         void Move();
+        Vector2 GetPosition();
+        bool isActive();
+        int GetSize();
     private:
-    Texture2D image;
+    Texture2D* image;
     Vector2 position;
     float scale;
+    bool active;
+    int size;
+    Vector2 speed;
 };
 
 

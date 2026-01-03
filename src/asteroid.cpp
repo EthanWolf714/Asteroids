@@ -1,17 +1,64 @@
 #include "asteroid.h"
 
 
-Asteroid::Asteroid(){
-    image = LoadTexture("build/SPRITES/ROCK.png");
-    position.x = (GetScreenWidth() - image.width)/ 2;
-    position.y = (GetScreenHeight() - image.height)/2;
-    scale = 2.0f;
+Asteroid::Asteroid(Vector2 startPos, Vector2 startSpeed, int asteroidSize, Texture2D* asteroidTexture){
+    position = startPos;
+    speed = startSpeed;
+    active = true;
+    size =  asteroidSize;
+    image = asteroidTexture;
+    
+    if(size == 3){
+        scale = 3.0f;
+    }else if(size == 2){
+        scale = 2.0f;
+    }else if( size == 1){
+        scale = 1.0f;
+    }
 }
 
+
 Asteroid::~Asteroid(){
-    UnloadTexture(image);
+   
 }
 
 void Asteroid::Draw(){  
-    DrawTextureEx(image, {position.x, position.y}, 0.0f,scale, WHITE);
+    DrawTextureEx(*image, position, 0, scale, WHITE);
+    
+    
 }
+
+void Asteroid::Update(){
+    position.x += speed.x * GetFrameTime();
+    position.y += speed.y * GetFrameTime();
+
+    float spriteWidth = image -> width * scale;
+    float spriteHeight = image-> height * scale;
+
+    if(position.x > GetScreenWidth() + spriteWidth){
+        position.x = -spriteWidth;
+    }
+    if(position.x < -spriteWidth){
+        position.x = GetScreenWidth() + spriteWidth;
+    }
+    if(position.y < -spriteHeight){
+        position.y = GetScreenHeight() + spriteHeight;
+    }
+    if(position.y > GetScreenHeight() + spriteHeight){
+        position.y = -spriteHeight;
+    }
+
+}
+
+bool Asteroid::isActive(){
+    return active;
+}
+
+Vector2 Asteroid::GetPosition(){
+    return position;
+}
+
+int Asteroid::GetSize(){
+    return size;
+}
+

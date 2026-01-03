@@ -1,6 +1,6 @@
 #include "bullet.h"
 #include "player.h"
-
+//constrcutor 
 Bullet::Bullet(Vector2 startPos, Vector2 startSpeed, Texture2D* bulletTexture) {
     position = startPos;
     speed = startSpeed;
@@ -21,11 +21,13 @@ void Bullet::Draw(){
 
 
 void Bullet::Update(){
+    //update bullets position every frame
     position.x += speed.x * GetFrameTime();
     position.y += speed.y * GetFrameTime();
 
     lifetime -= GetFrameTime();
 
+    //when lifetime equals 0 deactivate
     if(lifetime <= 0){
         active = false;
     }
