@@ -33,11 +33,10 @@ int main()
         } else {
             // Draw game over screen
             DrawText("GAME OVER", screenWidth + 300, screenHeight - 300, 40, RED);
-            DrawText("Press ESC to exit", screenWidth +  300, screenHeight-200, 20, WHITE);
+            DrawText("Press ESC to exit", screenWidth + 300, screenHeight - 200, 20, WHITE);
         }
 
-        
-        EndDrawing();
+                EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
