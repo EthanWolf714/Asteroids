@@ -10,6 +10,7 @@ Player::Player()
     position.y = (GetScreenHeight() - image.height) / 2;
     scale = 2.0;
     rotation = 0.0f;
+    active = true;
     
 
     
@@ -86,4 +87,16 @@ float Player::GetPlayerRotation(){
 
 Vector2 Player::GetPlayerSpeed(){
     return speed;
+}
+
+Rectangle Player::GetRect(){
+    return Rectangle{position.x, position.y, (float)image.width, (float)image.height};
+}
+
+void Player::SetActive(bool value){
+    active = value;
+}
+
+bool Player::IsActive(){
+    return active;
 }

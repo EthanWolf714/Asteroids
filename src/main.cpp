@@ -28,14 +28,24 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
         ClearBackground(BLACK);
-        game.Draw();
+        if (!game.IsGameOver()) {
+            game.Draw();
+        } else {
+            // Draw game over screen
+            DrawText("GAME OVER", screenWidth + 300, screenHeight - 300, 40, RED);
+            DrawText("Press ESC to exit", screenWidth +  300, screenHeight-200, 20, WHITE);
+        }
+
+        
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+
+    CloseWindow();
+           // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

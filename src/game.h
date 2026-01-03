@@ -4,6 +4,7 @@
 #include "asteroid.h"
 #include "bullet.h"
 #include <vector>
+#include "math.h"
 
 class Game
 {
@@ -15,6 +16,8 @@ public:
     void HandleInput();
     Vector2 GetRandomEdgePosition();
     Vector2 GetRandomVelocity();
+    bool IsGameOver();
+    
 
 private:
     Player player;
@@ -22,6 +25,7 @@ private:
     Texture2D bulletTexture;
     std::vector<Asteroid> asteroids;
     Texture2D asteroidTexture;
+    bool GameOver;
 };
 
 #endif

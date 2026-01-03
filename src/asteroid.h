@@ -12,7 +12,9 @@ class Asteroid {
         void Move();
         Vector2 GetPosition();
         bool isActive();
+        void SetActive(bool value);
         int GetSize();
+        Rectangle GetRect();
     private:
     Texture2D* image;
     Vector2 position;

@@ -31,6 +31,8 @@ void Bullet::Update(){
     if(lifetime <= 0){
         active = false;
     }
+
+    
 }
 
 bool Bullet::IsActive(){
@@ -39,4 +41,12 @@ bool Bullet::IsActive(){
 
 Vector2 Bullet::GetPosition(){
     return position;
+}
+
+Rectangle Bullet::GetRect(){
+    return Rectangle{position.x, position.y, (float)image->width, (float)image->height};
+}
+
+void Bullet::SetActive(bool value){
+    active = value;
 }

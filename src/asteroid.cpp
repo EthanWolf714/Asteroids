@@ -62,3 +62,10 @@ int Asteroid::GetSize(){
     return size;
 }
 
+Rectangle Asteroid::GetRect(){
+    return Rectangle{position.x, position.y, (float)image->width * scale, (float)image->height * scale};
+}
+
+void Asteroid::SetActive(bool value){
+    active = value;
+}

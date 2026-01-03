@@ -10,7 +10,10 @@ class Bullet{
         void Draw();
         void Update();
         bool IsActive();
+        void SetActive(bool value);
         Vector2 GetPosition();
+        Rectangle GetRect();
+        
         
     private:
         Vector2 position;

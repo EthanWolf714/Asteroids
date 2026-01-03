@@ -11,7 +11,10 @@ class Player{
         bool Shoot();
         void Move();
         void Rotate();
-       float GetPlayerRotation();
+        Rectangle GetRect();
+        void SetActive(bool value);
+        bool IsActive();
+        float GetPlayerRotation();
         Vector2 GetPlayerPosition();
         Vector2 GetPlayerSpeed();
         
@@ -22,6 +25,7 @@ class Player{
     float acceleration;
     float rotation;
     float scale;
+    bool active;
 };
 
 
