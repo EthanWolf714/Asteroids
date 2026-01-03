@@ -6,6 +6,7 @@ Game::Game()
     // game loads texture once so its not being assigned every time a bullet is created
     bulletTexture = LoadTexture("build/SPRITES/BULLET.png");
     asteroidTexture = LoadTexture("build/SPRITES/ROCK.png");
+    score = 0;
 
     for (int i = 0; i < 10; i++)
     {
@@ -22,6 +23,10 @@ Game::~Game()
     UnloadTexture(bulletTexture);
 }
 
+void Game::Restart(){
+    Game();
+}
+
 void Game::Draw()
 {
     player.Draw();
@@ -36,6 +41,11 @@ void Game::Draw()
     {
         bullet.Draw();
     }
+}
+
+int Game::HandleScore(){
+    
+    return score;
 }
 
 void Game::HandleInput()
@@ -96,6 +106,15 @@ void Game::Update()
             if (CheckCollisionRecs(bullet.GetRect(), asteroid.GetRect()))
             {
                 bullet.SetActive(false);
+
+                if(asteroid.GetSize() == 3){
+                    score += 100;
+                } else if(asteroid.GetSize() == 2){
+                    score += 50;
+                } else if(asteroid.GetSize() == 1){
+                    score += 25;
+                }
+
                 asteroid.SetActive(false);
 
                 if(asteroid.GetSize() > 1){

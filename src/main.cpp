@@ -24,7 +24,7 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-        if(IsKeyPressed(KEY_ENTER)){
+        if(IsKeyPressed(KEY_P)){
             pause = !pause;
         }
         if(!game.IsGameOver() && !pause){
@@ -37,30 +37,24 @@ int main()
         ClearBackground(BLACK);
         if (!game.IsGameOver()) {
             game.Draw();
-            
+            DrawText(TextFormat("Score: %i", game.HandleScore()),280, 0, 20, GREEN );
 
             if(pause){
-            DrawText("Paused",350, 130, 40, GREEN);
-        }
-
-        } else {
+                DrawText("Paused",350, 130, 40, GREEN);
+            }
+        }else {
             // Draw game over screen
             DrawText("GAME OVER", 280, 130, 40, RED);
-            DrawText("Press ESC to exit", 180, 200, 50, WHITE);
+            DrawText("Press ESC to exit or Enter to Restart", 180, 200, 50, WHITE);
+            
         }
-
-        
-
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
-
     // De-Initialization
     //--------------------------------------------------------------------------------------
-
     CloseWindow();
            // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-
     return 0;
 }

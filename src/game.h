@@ -14,6 +14,8 @@ public:
     void Draw();
     void Update();
     void HandleInput();
+    int HandleScore();
+    void Restart();
     Vector2 GetRandomEdgePosition();
     Vector2 GetRandomVelocity();
     bool IsGameOver();
@@ -26,6 +28,8 @@ private:
     std::vector<Asteroid> asteroids;
     Texture2D asteroidTexture;
     bool GameOver;
+    int score;
+    
 };
 
 #endif
