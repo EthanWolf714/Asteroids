@@ -16,6 +16,7 @@ int main()
     //--------------------------------------------------------------------------------------
 
     Game game;
+    bool pause;
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -23,20 +24,34 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-        game.Update();
+        if(IsKeyPressed(KEY_ENTER)){
+            pause = !pause;
+        }
+        if(!game.IsGameOver() && !pause){
+            game.Update();
+        }
+        
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
         ClearBackground(BLACK);
         if (!game.IsGameOver()) {
             game.Draw();
-        } else {
-            // Draw game over screen
-            DrawText("GAME OVER", screenWidth + 300, screenHeight - 300, 40, RED);
-            DrawText("Press ESC to exit", screenWidth + 300, screenHeight - 200, 20, WHITE);
+            
+
+            if(pause){
+            DrawText("Paused",350, 130, 40, GREEN);
         }
 
-                EndDrawing();
+        } else {
+            // Draw game over screen
+            DrawText("GAME OVER", 280, 130, 40, RED);
+            DrawText("Press ESC to exit", 180, 200, 50, WHITE);
+        }
+
+        
+
+        EndDrawing();
         //----------------------------------------------------------------------------------
     }
 

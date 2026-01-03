@@ -97,6 +97,18 @@ void Game::Update()
             {
                 bullet.SetActive(false);
                 asteroid.SetActive(false);
+
+                if(asteroid.GetSize() > 1){
+                    Vector2 pos = asteroid.GetPosition();
+                    int newSize = asteroid.GetSize() - 1;
+
+                    Vector2 velocity1 = GetRandomVelocity();
+                    Vector2 velocity2 = GetRandomVelocity();
+
+                    asteroids.push_back(Asteroid(pos, velocity1, newSize, &asteroidTexture));
+                    asteroids.push_back(Asteroid(pos, velocity2, newSize, &asteroidTexture));
+
+                }
             }
             
         }
