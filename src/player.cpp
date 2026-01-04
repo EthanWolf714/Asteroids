@@ -12,18 +12,12 @@ Player::Player()
     rotation = 0.0f;
     active = true;
     bulletSound = LoadSound("build/SFX/BULLET_1.wav");
-     explosion = LoadTexture("build/SPRITES/EXPLOSION.png");
-    frameHeight = (float)(explosion.height/NUM_FRAME_PER_LINE);
-    frameWidth = (float)(explosion.width/NUM_LINES);
-    currentFrame = 0;
-    currentLine = 0;
-   
     
-    frameRec = {0,0, frameWidth, frameHeight};
-    explosionPos = position;
-
+    explosion = LoadTexture("build/SPRITES/EXPLOSION.png");
     isExploding = false;
     explosionTimer = 0.0f;
+    explosionFrame = 0;
+    explosionPos = {0, 0};
 
     
 
@@ -36,39 +30,36 @@ Player::~Player(){
 
 }
 
-void Player::Update(){
-     if(isExploding){
-        TraceLog(LOG_INFO, "Exploding - Frame: %d, Line: %d", currentFrame, currentLine);
+void Player::Update() {
+    if (isExploding) {
         explosionTimer += GetFrameTime();
-        if(explosionTimer >= 0.05f){
+        
+        if (explosionTimer >= 0.07f) {  
             explosionTimer = 0;
-            currentFrame++;
-
-            if (currentFrame >= NUM_FRAME_PER_LINE) {
-                active = false;
+            explosionFrame++;
+            
+            if (explosionFrame >= 5) {  // all 5 frames done
                 isExploding = false;
-                return;
-                
-                
+                active = false;
             }
-
-            frameRec.x = currentFrame * frameWidth;
-            frameRec.y = 0;
         }
     }
 }
 
 void Player::Draw(){
-    if(isExploding){
-        //TraceLog(LOG_INFO, "Drawing explosion");
-        float explosionScale = 4.0f;
-        Rectangle source = frameRec;
+    if (isExploding) {
+        float frameWidth = 120.0f / 5.0f;  // 5 frames = 24 pixels each
+        float frameHeight = 20.0f;
+        float scale = 2.0f;
+        
+        Rectangle source = {explosionFrame * frameWidth, 0, frameWidth, frameHeight};
         Rectangle dest = {
-            explosionPos.x - (frameWidth * explosionScale) / 2, // center it
-            explosionPos.y - (frameHeight * explosionScale) / 2,
-            frameWidth * explosionScale, 
-            frameHeight * explosionScale
+            explosionPos.x - (frameWidth * scale) / 2,
+            explosionPos.y - (frameHeight * scale) / 2,
+            frameWidth * scale,
+            frameHeight * scale
         };
+        
         DrawTexturePro(explosion, source, dest, {0, 0}, 0, WHITE);
     } else if (active) {
         Rectangle source = {0,0, (float)image.width, (float)image.height}; //set source image
@@ -130,11 +121,11 @@ bool Player::Shoot(){
    return IsKeyPressed(KEY_SPACE);
 }
 
-void Player::StartExplosion(){
+void Player::StartExplosion() {
     isExploding = true;
+    explosionFrame = 0;
+    explosionTimer = 0.07f;
     explosionPos = position;
-    currentFrame = 0;
-    currentLine = 0;
 }
 
 Vector2 Player::GetPlayerPosition(){

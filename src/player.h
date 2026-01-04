@@ -3,8 +3,6 @@
 #include "raylib.h"
 #include "math.h"
 
-#define NUM_FRAME_PER_LINE 5
-#define NUM_LINES 1
 
 class Player{
     public:
@@ -39,12 +37,10 @@ class Player{
     float frameWidth;
     float frameHeight;
     Texture2D explosion;
-    int currentFrame;
-    int currentLine;
-    Rectangle frameRec;
-    Vector2 explosionPos;
     bool isExploding;
     float explosionTimer;
+    int explosionFrame;  // current frame (0-4)
+    Vector2 explosionPos;
 };
 
 
