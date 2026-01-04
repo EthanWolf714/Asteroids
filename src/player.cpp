@@ -11,7 +11,8 @@ Player::Player()
     scale = 2.0;
     rotation = 0.0f;
     active = true;
-    lives = 3;
+    //lives = 3;
+    //hasSheild = false;
     bulletSound = LoadSound("build/SFX/BULLET_1.wav");
     explosionSound = LoadSound("build/SFX/GAME_OVER_1.wav");
     explosion = LoadTexture("build/SPRITES/EXPLOSION.png");

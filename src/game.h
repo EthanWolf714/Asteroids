@@ -27,6 +27,7 @@ private:
     std::vector<Bullet> bullets;
     Texture2D bulletTexture;
     std::vector<Asteroid> asteroids;
+    //std::vector<PowerUp> powerups;
     Texture2D asteroidTexture;
     bool GameOver;
     int score;
