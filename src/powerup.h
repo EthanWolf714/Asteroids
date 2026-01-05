@@ -10,7 +10,7 @@ class PowerUp{
         void Update();
         void Draw();
         Rectangle GetRect();
-        void GetType();
+        
 
 
     private:
@@ -18,6 +18,8 @@ class PowerUp{
         Texture2D* extraLife;
         Texture2D* sheild;
         bool status;
+        float scale;
+        Texture2D* image;
         
 
 };

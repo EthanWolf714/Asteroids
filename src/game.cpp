@@ -8,10 +8,10 @@ Game::Game()
     asteroidTexture = LoadTexture("build/SPRITES/ROCK.png");
     hit = LoadSound("build/SFX/DESTROY_1.wav");
     extraLifeTexture = LoadTexture("build/SPRITES/EXTRA_LIFE.png");
-    sheildTexture = LoadTexture("buil/SPRITES/SHIELD.png");
+    sheildTexture = LoadTexture("build/SPRITES/SHIELD.png");
     score = 0;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 4; i++)
     {
         asteroids.push_back(Asteroid(
             GetRandomEdgePosition(),
@@ -32,6 +32,7 @@ void Game::Restart(){
     player.Reset();
     bullets.clear();
     asteroids.clear();
+    powerups.clear();
     for (int i = 0; i < 10; i++)
     {
         asteroids.push_back(Asteroid(
@@ -46,6 +47,9 @@ void Game::Draw()
 {
     player.Draw();
     
+    for(auto &powerup : powerups){
+        powerup.Draw();
+    }
 
     for (auto &asteroid : asteroids)
     {
@@ -138,15 +142,21 @@ void Game::Update()
                 asteroid.SetActive(false);
                 int randPowerup = GetRandomValue(1,2);
                 int spawnChance = GetRandomValue(1, 100);
-                for( auto $powerup : powerups){
-                    if(spawnChance <= 15){
-                        if(randPowerup == 1){
-                            Vector2 pos = asteroid.GetPosition();
-                            powerups.push_back(PowerUp(pos, &extraLifeTexture));
+                TraceLog(LOG_INFO, "Spawn chance: %d", spawnChance);
+                if(spawnChance <= 15){
+                    if(randPowerup == 1){
+                        Vector2 pos = asteroid.GetPosition();
+                        powerups.push_back(PowerUp(pos, &extraLifeTexture));
+                        TraceLog(LOG_INFO, "Extra Life spawned at (%f, %f)", pos.x, pos.y);
                             
-                        }
-                        
+                    }else{
+                        Vector2 pos = asteroid.GetPosition();
+                        powerups.push_back(PowerUp(pos, &sheildTexture));
+                        TraceLog(LOG_INFO, "Shield spawned at (%f, %f)", pos.x, pos.y);
                     }
+
+                    TraceLog(LOG_INFO, "Total powerups: %d", powerups.size());
+                        
                 }
                 
 

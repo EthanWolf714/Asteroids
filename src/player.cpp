@@ -50,6 +50,22 @@ void Player::Update() {
             }
         }
     }
+
+    float spriteWidth = image.width * scale;
+    float spriteHeight = image.height * scale;
+
+    if(position.x > GetScreenWidth() + spriteWidth){
+        position.x = -spriteWidth;
+    }
+    if(position.x < -spriteWidth){
+        position.x = GetScreenWidth() + spriteWidth;
+    }
+    if(position.y < -spriteHeight){
+        position.y = GetScreenHeight() + spriteHeight;
+    }
+    if(position.y > GetScreenHeight() + spriteHeight){
+        position.y = -spriteHeight;
+    }
 }
 
 void Player::Reset(){
