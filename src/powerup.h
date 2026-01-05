@@ -1,10 +1,11 @@
 #include "raylib.h"
+#include <string>
 #ifndef POWERUP_H
 #define POWERUP_H
 
 class PowerUp{
     public:
-        PowerUp();
+        PowerUp( Vector2 startPos,Texture2D* texture);
         ~PowerUp();
         void Update();
         void Draw();
@@ -14,9 +15,10 @@ class PowerUp{
 
     private:
         Vector2 position;
-        Texture2D image;
+        Texture2D* extraLife;
+        Texture2D* sheild;
         bool status;
-        int type;
+        
 
 };
 

@@ -24,6 +24,7 @@ class Player{
         void AddLife();
         void ActivateShield();
         void Reset();
+        bool HasSheild();
         
 
         

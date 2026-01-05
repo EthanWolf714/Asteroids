@@ -7,6 +7,8 @@ Game::Game()
     bulletTexture = LoadTexture("build/SPRITES/BULLET.png");
     asteroidTexture = LoadTexture("build/SPRITES/ROCK.png");
     hit = LoadSound("build/SFX/DESTROY_1.wav");
+    extraLifeTexture = LoadTexture("build/SPRITES/EXTRA_LIFE.png");
+    sheildTexture = LoadTexture("buil/SPRITES/SHIELD.png");
     score = 0;
 
     for (int i = 0; i < 10; i++)
@@ -43,6 +45,7 @@ void Game::Restart(){
 void Game::Draw()
 {
     player.Draw();
+    
 
     for (auto &asteroid : asteroids)
     {
@@ -133,6 +136,21 @@ void Game::Update()
                 }
 
                 asteroid.SetActive(false);
+                int randPowerup = GetRandomValue(1,2);
+                int spawnChance = GetRandomValue(1, 100);
+                for( auto $powerup : powerups){
+                    if(spawnChance <= 15){
+                        if(randPowerup == 1){
+                            Vector2 pos = asteroid.GetPosition();
+                            powerups.push_back(PowerUp(pos, &extraLifeTexture));
+                            
+                        }
+                        
+                    }
+                }
+                
+
+                
 
                 if(asteroid.GetSize() > 1){
                     //asteroid splitting 
@@ -155,9 +173,13 @@ void Game::Update()
     //asteroid player collision
     for (auto &asteroid : asteroids){
         if(CheckCollisionRecs(player.GetRect(), asteroid.GetRect())){
-                player.StartExplosion();    
-                
+            if(player.HasSheild()){
                 break;
+            }else{
+                player.StartExplosion();    
+                break;
+            }
+                
         }
     }   
     

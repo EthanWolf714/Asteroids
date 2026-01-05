@@ -11,8 +11,8 @@ Player::Player()
     scale = 2.0;
     rotation = 0.0f;
     active = true;
-    //lives = 3;
-    //hasSheild = false;
+    lives = 3;
+    hasSheild = false;
     bulletSound = LoadSound("build/SFX/BULLET_1.wav");
     explosionSound = LoadSound("build/SFX/GAME_OVER_1.wav");
     explosion = LoadTexture("build/SPRITES/EXPLOSION.png");
@@ -182,5 +182,18 @@ bool Player::IsActive(){
 
 bool Player::IsExploding(){
     return isExploding;
+}
+
+void Player::AddLife(){
+    lives = lives + 1;
+
+}
+
+void Player::ActivateShield(){
+    hasSheild = true;
+}
+
+bool Player::HasSheild(){
+    return hasSheild;
 }
 

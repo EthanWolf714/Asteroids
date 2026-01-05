@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "player.h"
+#include "powerup.h"
 #include "asteroid.h"
 #include "bullet.h"
 #include <vector>
@@ -21,20 +22,18 @@ public:
     bool IsGameOver();
     bool PlayerDead();
 
-    
-
 private:
     Player player;
+    std::vector<PowerUp> powerups;
     std::vector<Bullet> bullets;
     Texture2D bulletTexture;
     std::vector<Asteroid> asteroids;
-    //std::vector<PowerUp> powerups;
     Texture2D asteroidTexture;
+    Texture2D extraLifeTexture;
+    Texture2D sheildTexture;
     bool GameOver;
     int score;
     Sound hit;
-    
-    
 };
 
 #endif
