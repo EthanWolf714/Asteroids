@@ -8,6 +8,8 @@ Game::Game()
     asteroidTexture = LoadTexture("build/SPRITES/ROCK.png");
     hit = LoadSound("build/SFX/DESTROY_1.wav");
     extraLifeTexture = LoadTexture("build/SPRITES/EXTRA_LIFE.png");
+    damage = LoadSound("build/SFX/hit.wav");
+    pickup = LoadSound("build/SFX/PICKUP_1.wav");
     sheildTexture = LoadTexture("build/SPRITES/SHIELD.png");
     score = 0;
 
@@ -186,6 +188,7 @@ void Game::Update()
     //player powerup collision
     for(auto &powerup : powerups){
         if(CheckCollisionRecs(powerup.GetRect(), player.GetRect())){
+            PlaySound(pickup);
             if(powerup.GetType() == "sheild"){
                 player.ActivateShield();
                 powerup.SetActive(false);
@@ -201,6 +204,7 @@ void Game::Update()
     for (auto &asteroid : asteroids){
         if(CheckCollisionRecs(player.GetRect(), asteroid.GetRect())){
             if(player.HasSheild() ){
+                PlaySound(damage);
                 player.DeactivateShield();
                 asteroid.SetActive(false);
                
@@ -208,6 +212,7 @@ void Game::Update()
                 player.RemoveLife();
                 player.StartExplosion();   
                 asteroid.SetActive(false); 
+                player.Reset();
                 break;
             }else{
                 player.StartExplosion();
@@ -286,4 +291,8 @@ Vector2 Game::GetRandomVelocity()
 bool Game::IsGameOver()
 {
     return !player.IsActive();
+}
+
+int Game::HandleLives(){
+    return player.GetLives();
 }

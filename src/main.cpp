@@ -43,8 +43,8 @@ int main()
         ClearBackground(BLACK);
         if (!game.IsGameOver() || game.PlayerDead()) {
             game.Draw();
-            DrawText(TextFormat("Score: %i", game.HandleScore()),280, 0, 20, GREEN );
-            
+            DrawText(TextFormat("Score: %i", game.HandleScore()),350, 0, 20, GREEN );
+            DrawText(TextFormat("Lives: %i", game.HandleLives()),450, 20, 20, GREEN );
 
             if(pause){
                 DrawText("Paused",350, 130, 40, GREEN);
@@ -52,7 +52,7 @@ int main()
         }else {
             // Draw game over screen
             DrawText("GAME OVER", 280, 130, 40, RED);
-            DrawText("Press ESC to exit or Enter to Restart", 180, 200, 50, WHITE);
+            DrawText("Press ESC to exit or Enter to Restart", 150, 200, 20, WHITE);
 
             if(IsKeyPressed(KEY_ENTER)){
                game.Restart();
