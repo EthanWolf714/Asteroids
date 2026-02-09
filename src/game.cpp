@@ -268,7 +268,6 @@ void Game::StartNextLevel(){
     //clear powerups and bullets
     bullets.clear();
     powerups.clear();
-    player.SetLives(3);
 
     //spawn more asteroids
     int numAsteroids = 5 + (level * 2);
