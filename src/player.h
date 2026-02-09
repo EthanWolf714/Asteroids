@@ -28,6 +28,7 @@ class Player{
         bool HasSheild();
         void DeactivateShield();
         int GetLives();
+        void SetLives(int playerLives);
         
 
         

@@ -227,6 +227,11 @@ int Player::GetLives(){
     return lives;
 }
 
+void Player::SetLives(int playerLives)
+{
+    lives = playerLives;
+}
+
 void Player::RemoveLife(){
      TraceLog(LOG_INFO, "RemoveLife called! Lives now: %d", lives);
     lives--;
