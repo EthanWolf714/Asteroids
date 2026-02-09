@@ -190,7 +190,9 @@ void Game::Update()
                 powerup.SetActive(false);
             }
             else if(powerup.GetType() == "life"){
+                 TraceLog(LOG_INFO, "BEFORE AddLife: %d lives", player.GetLives());
                 player.AddLife();
+                TraceLog(LOG_INFO, "AFTER AddLife: %d lives", player.GetLives());
                 powerup.SetActive(false);
             }
         }
@@ -205,8 +207,9 @@ void Game::Update()
                 asteroid.SetActive(false);
                
             }else if(player.GetLives() > 0){
+                TraceLog(LOG_INFO, "Calling RemoveLife - before: %d lives", player.GetLives());
                 player.RemoveLife();
-               // TraceLog(LOG_INFO, "Calling RemoveLife - before: %d lives", player.GetLives());
+                 TraceLog(LOG_INFO, "AFTER RemoveLife: %d lives", player.GetLives());
                 player.StartExplosion();   
                 asteroid.SetActive(false); 
                 break;
