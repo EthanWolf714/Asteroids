@@ -48,7 +48,7 @@ void Player::Update() {
                 isExploding = false;
                 
                 if(lives > 0){
-                    Reset();
+                    ResetPos();
                 }else{
                     active = false;
                 }
@@ -72,10 +72,12 @@ void Player::Update() {
         position.y = -spriteHeight;
     }
 }
-
-void Player::Reset(){
+void Player::ResetPos(){
     position.x = (GetScreenWidth() - image.width)/ 2;
     position.y = (GetScreenHeight() - image.height) / 2;
+}
+void Player::RestartPlayer(){
+    ResetPos();
     scale = 2.0;
     rotation = 0.0f;
     active = true;
@@ -83,6 +85,7 @@ void Player::Reset(){
     explosionTimer = 0.0f;
     explosionFrame = 0;
     explosionPos = {0, 0};
+    SetLives(3);
 }
 
 void Player::Draw(){

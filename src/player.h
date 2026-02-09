@@ -24,7 +24,8 @@ class Player{
         void AddLife();
         void RemoveLife();
         void ActivateShield();
-        void Reset();
+        void ResetPos();
+        void RestartPlayer();
         bool HasSheild();
         void DeactivateShield();
         int GetLives();

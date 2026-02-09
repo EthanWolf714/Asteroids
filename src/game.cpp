@@ -27,18 +27,11 @@ Game::~Game()
 void Game::Restart(){
     score = 0;
     level = 1;
-    player.SetLives(3);
+    player.RestartPlayer();
     bullets.clear();
     asteroids.clear();
     powerups.clear();
-    for (int i = 0; i < 10; i++)
-    {
-        asteroids.push_back(Asteroid(
-            GetRandomEdgePosition(),
-            GetRandomVelocity(),
-            3,
-            &asteroidTexture));
-    }
+    StartNextLevel();
 }
 
 void Game::Draw()
