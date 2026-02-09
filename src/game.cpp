@@ -5,13 +5,13 @@ Game::Game()
 {
     printf("Working directory: %s\n", GetWorkingDirectory());
     // game loads texture once so its not being assigned every time a bullet is created
-    bulletTexture = LoadTexture("./build/SPRITES/BULLET.png");
-    asteroidTexture = LoadTexture("./build/SPRITES/ROCK.png");
-    hit = LoadSound("./build/SFX/DESTROY_1.wav");
-    extraLifeTexture = LoadTexture("./build/SPRITES/EXTRA_LIFE.png");
-    damage = LoadSound("./build/SFX/hit.wav");
-    pickup = LoadSound("./build/SFX/PICKUP_1.wav");
-    sheildTexture = LoadTexture("./build/SPRITES/SHIELD.png");
+    bulletTexture = LoadTexture("SPRITES/BULLET.png");
+    asteroidTexture = LoadTexture("SPRITES/ROCK.png");
+    hit = LoadSound("SFX/DESTROY_1.wav");
+    extraLifeTexture = LoadTexture("SPRITES/EXTRA_LIFE.png");
+    damage = LoadSound("SFX/hit.wav");
+    pickup = LoadSound("SFX/PICKUP_1.wav");
+    sheildTexture = LoadTexture("SPRITES/SHIELD.png");
     score = 0;
     level = 1;
 
