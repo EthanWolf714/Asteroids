@@ -5,7 +5,7 @@
 Player::Player()
 {
 
-    image = LoadTexture("build/SPRITES/PLAYER.png");
+    image = LoadTexture("SPRITES/PLAYER.png");
     position.x = (GetScreenWidth() - image.width)/ 2;
     position.y = (GetScreenHeight() - image.height) / 2;
     scale = 2.0;
@@ -13,9 +13,9 @@ Player::Player()
     active = true;
     lives = 3;
     hasSheild = false;
-    bulletSound = LoadSound("build/SFX/BULLET_1.wav");
-    explosionSound = LoadSound("build/SFX/GAME_OVER_1.wav");
-    explosion = LoadTexture("build/SPRITES/EXPLOSION.png");
+    bulletSound = LoadSound("SFX/BULLET_1.wav");
+    explosionSound = LoadSound("SFX/GAME_OVER_1.wav");
+    explosion = LoadTexture("SPRITES/EXPLOSION.png");
     isExploding = false;
     explosionTimer = 0.0f;
     explosionFrame = 0;
