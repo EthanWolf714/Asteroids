@@ -20,6 +20,8 @@ Player::Player()
     explosionTimer = 0.0f;
     explosionFrame = 0;
     explosionPos = {0, 0};
+    invincible = false;
+    invincibilityTimer = 0.0f;
 
 
 
@@ -53,6 +55,13 @@ void Player::Update() {
                     active = false;
                 }
             }
+        }
+    }
+
+    if(invincible){
+        invincibilityTimer -= GetFrameTime();
+        if(invincibilityTimer <= 0.0f){
+            invincible = false;
         }
     }
 
@@ -107,12 +116,15 @@ void Player::Draw(){
         //draw animation
         DrawTexturePro(explosion, source, dest, {0, 0}, 0, WHITE);
     } else if (active) {
-        //draw ship sprite
-        Rectangle source = {0,0, (float)image.width, (float)image.height}; //set source image
-        Rectangle dest = {position.x, position.y, image.width * scale, image.height * scale}; //scale
-        Vector2 origin = {(image.width * scale) / 2, (image.height * scale)/2}; //rotate around center
+        if(!invincible || (int)(invincibilityTimer * 10) % 2 == 0){
+            //draw ship sprite
+            Rectangle source = {0,0, (float)image.width, (float)image.height}; //set source image
+            Rectangle dest = {position.x, position.y, image.width * scale, image.height * scale}; //scale
+            Vector2 origin = {(image.width * scale) / 2, (image.height * scale)/2}; //rotate around center
 
-        DrawTexturePro(image, source, dest, origin, rotation, WHITE);
+            DrawTexturePro(image, source, dest, origin, rotation, WHITE);
+        }
+        
     }
     
 
@@ -178,6 +190,7 @@ void Player::StartExplosion() {
     explosionFrame = 0;
     explosionTimer = 0.07f;
     explosionPos = position;
+    ActivateInvincibility();
 }
 
 Vector2 Player::GetPlayerPosition(){
@@ -233,6 +246,17 @@ int Player::GetLives(){
 void Player::SetLives(int playerLives)
 {
     lives = playerLives;
+}
+
+void Player::ActivateInvincibility()
+{
+    invincible = true;
+    invincibilityTimer = INVINCIBILITY_DURATION;
+}
+
+bool Player::IsInvincible()
+{
+    return invincible;
 }
 
 void Player::RemoveLife(){

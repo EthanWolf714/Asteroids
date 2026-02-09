@@ -30,6 +30,8 @@ class Player{
         void DeactivateShield();
         int GetLives();
         void SetLives(int playerLives);
+        void ActivateInvincibility();
+        bool IsInvincible();
         
 
         
@@ -54,6 +56,9 @@ class Player{
     Sound explosionSound;
     int lives;
     bool hasSheild;
+    bool  invincible;
+    float  invincibilityTimer;
+    const float INVINCIBILITY_DURATION = 2.0f;
 };
 
 

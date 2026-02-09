@@ -194,6 +194,10 @@ void Game::Update()
     //asteroid player collision
     for (auto &asteroid : asteroids){
         if(CheckCollisionRecs(player.GetRect(), asteroid.GetRect())){
+            if(player.IsInvincible()){
+                continue;
+            }
+            
             if(player.HasSheild() ){
                 PlaySound(damage);
                 player.DeactivateShield();
