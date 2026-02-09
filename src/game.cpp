@@ -27,7 +27,7 @@ Game::~Game()
 void Game::Restart(){
     score = 0;
     level = 1;
-    player.Reset();
+    player.SetLives(3);
     bullets.clear();
     asteroids.clear();
     powerups.clear();
